@@ -48,7 +48,7 @@ python3 -m unittest discover -s tests -v
 python3 skills/fb-b2b-ads-playbook/scripts/analyze_metrics.py --input skills/fb-b2b-ads-playbook/assets/sample-metrics.json
 ```
 
-本工具只用 Python 标准库，不依赖 bash、macOS 或第三方 Python 包。指标校验需要 IANA 时区资料：macOS/Linux 通常提供系统数据库；Windows 或精简容器若报 `IANA timezone data is unavailable`，先安装可选的 `tzdata`：
+脚本本身只用 Python 标准库，不依赖 bash。它还需要 IANA 时区资料：macOS/Linux 通常提供系统数据库；Windows 或精简容器若报 `IANA timezone data is unavailable`，先安装可选的 `tzdata`：
 
 ```powershell
 py -3 -m pip install tzdata
