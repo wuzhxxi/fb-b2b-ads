@@ -1,0 +1,18 @@
+{
+  "context": {
+    "currency": "USD",
+    "timezone": "Asia/Shanghai",
+    "date_start": "2026-09-01",
+    "date_end": "2026-09-07",
+    "grain": "ad_set",
+    "attribution_window": "synthetic 7-day click",
+    "results_definition": "synthetic instant form submissions",
+    "crm_cohort_aligned": true,
+    "crm_deduplicated": true,
+    "rows_disjoint": true
+  },
+  "rows": [
+    {"id": "synthetic-A", "spend": 100, "impressions": 10000, "reach": 8000, "link_clicks": 200, "results": 45, "leads": 40, "assessed_leads": 40, "qualified_leads": 2, "quotes": 1, "wins": 0},
+    {"id": "synthetic-B", "spend": 100, "impressions": 8000, "reach": 6000, "link_clicks": 100, "results": 18, "leads": 15, "assessed_leads": 15, "qualified_leads": 6, "quotes": 3, "wins": 1}
+  ]
+}

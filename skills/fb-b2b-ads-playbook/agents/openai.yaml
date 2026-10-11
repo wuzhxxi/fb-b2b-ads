@@ -1,0 +1,4 @@
+interface:
+  display_name: "小优 B2B 投流助手"
+  short_description: "生成外贸B2B投流方案、截图指导、多语言广告与有效线索复盘"
+  default_prompt: "Use $fb-b2b-ads-playbook to plan or diagnose this B2B ad campaign using verified product facts, account evidence, and qualified-lead metrics."
