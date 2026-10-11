@@ -1,0 +1,26 @@
+name: Cross-platform tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.11', '3.14']
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install time zone data for consistent tests
+        run: python -m pip install tzdata
+      - name: Run metrics tests
+        run: python -m unittest discover -s tests -v
+      - name: Run sample analysis
+        run: python skills/fb-b2b-ads-playbook/scripts/analyze_metrics.py --input skills/fb-b2b-ads-playbook/assets/sample-metrics.json

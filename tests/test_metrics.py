@@ -86,6 +86,17 @@ class MetricsTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             module.analyze(self.data)
 
+    def test_missing_timezone_database_has_install_hint(self):
+        original = module.ZoneInfo
+        try:
+            def no_timezone_database(_key):
+                raise module.ZoneInfoNotFoundError('Asia/Shanghai')
+            module.ZoneInfo = no_timezone_database
+            with self.assertRaisesRegex(ValueError, 'install tzdata'):
+                module.analyze(self.data)
+        finally:
+            module.ZoneInfo = original
+
 
 if __name__ == '__main__':
     unittest.main()

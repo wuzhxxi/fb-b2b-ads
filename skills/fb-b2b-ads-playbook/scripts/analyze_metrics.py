@@ -64,9 +64,15 @@ def validate_context(ctx, label):
         raise ValueError(f'{label}: currency must be an uppercase three-letter code')
     try:
         ZoneInfo(ctx['timezone'])
+    except ZoneInfoNotFoundError as exc:
+        raise ValueError(
+            f'{label}: IANA timezone data is unavailable; install tzdata with '
+            '`python -m pip install tzdata`, then rerun'
+        ) from exc
+    try:
         start, end = date.fromisoformat(ctx['date_start']), date.fromisoformat(ctx['date_end'])
-    except (ValueError, ZoneInfoNotFoundError) as exc:
-        raise ValueError(f'{label}: invalid date or timezone') from exc
+    except ValueError as exc:
+        raise ValueError(f'{label}: invalid ISO date') from exc
     if start > end:
         raise ValueError(f'{label}: date_start must not follow date_end')
     if ctx['grain'] not in ('campaign', 'ad_set', 'ad'):
